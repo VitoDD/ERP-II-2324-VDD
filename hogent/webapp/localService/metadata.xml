@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="Z74STUDENTGAMESSERVICE_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="Z74Games" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.Binary" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Publisher" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Publisher" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ReleaseDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Platform" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Platform" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Genre" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Genre" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Z74FavoGames" Relationship="Z74STUDENTGAMESSERVICE_SRV.Games_FavoGames" FromRole="FromRole_Games_FavoGames" ToRole="ToRole_Games_FavoGames"/>
+            </EntityType>
+            <EntityType Name="Z74FavoGames" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Studentid"/>
+                    <PropertyRef Name="Gameid"/>
+                </Key>
+                <Property Name="Studentid" Type="Edm.Binary" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Gameid" Type="Edm.Binary" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Z74Games" Relationship="Z74STUDENTGAMESSERVICE_SRV.Games_FavoGames" FromRole="ToRole_Games_FavoGames" ToRole="FromRole_Games_FavoGames"/>
+                <NavigationProperty Name="Z74Students" Relationship="Z74STUDENTGAMESSERVICE_SRV.Student_FavoGames" FromRole="ToRole_Student_FavoGames" ToRole="FromRole_Student_FavoGames"/>
+            </EntityType>
+            <EntityType Name="Z74Students" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.Binary" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Firstname" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Firstname" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Lastname" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Lastname" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Z74FavoGames" Relationship="Z74STUDENTGAMESSERVICE_SRV.Student_FavoGames" FromRole="FromRole_Student_FavoGames" ToRole="ToRole_Student_FavoGames"/>
+            </EntityType>
+            <Association Name="Games_FavoGames" sap:content-version="1">
+                <End Type="Z74STUDENTGAMESSERVICE_SRV.Z74Games" Multiplicity="1" Role="FromRole_Games_FavoGames"/>
+                <End Type="Z74STUDENTGAMESSERVICE_SRV.Z74FavoGames" Multiplicity="*" Role="ToRole_Games_FavoGames"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_Games_FavoGames">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="ToRole_Games_FavoGames">
+                        <PropertyRef Name="Gameid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="Student_FavoGames" sap:content-version="1">
+                <End Type="Z74STUDENTGAMESSERVICE_SRV.Z74Students" Multiplicity="1" Role="FromRole_Student_FavoGames"/>
+                <End Type="Z74STUDENTGAMESSERVICE_SRV.Z74FavoGames" Multiplicity="*" Role="ToRole_Student_FavoGames"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_Student_FavoGames">
+                        <PropertyRef Name="Id"/>
+                    </Principal>
+                    <Dependent Role="ToRole_Student_FavoGames">
+                        <PropertyRef Name="Studentid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="Z74STUDENTGAMESSERVICE_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="Z74GamesSet" EntityType="Z74STUDENTGAMESSERVICE_SRV.Z74Games" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="Z74FavoGamesSet" EntityType="Z74STUDENTGAMESSERVICE_SRV.Z74FavoGames" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="Z74StudentsSet" EntityType="Z74STUDENTGAMESSERVICE_SRV.Z74Students" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="Student_FavoGamesSet" Association="Z74STUDENTGAMESSERVICE_SRV.Student_FavoGames" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Z74StudentsSet" Role="FromRole_Student_FavoGames"/>
+                    <End EntitySet="Z74FavoGamesSet" Role="ToRole_Student_FavoGames"/>
+                </AssociationSet>
+                <AssociationSet Name="Games_FavoGamesSet" Association="Z74STUDENTGAMESSERVICE_SRV.Games_FavoGames" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Z74GamesSet" Role="FromRole_Games_FavoGames"/>
+                    <End EntitySet="Z74FavoGamesSet" Role="ToRole_Games_FavoGames"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="https://A03Z.UCC.OVGU.DE:443/sap/opu/odata/sap/Z74STUDENTGAMESSERVICE_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://A03Z.UCC.OVGU.DE:443/sap/opu/odata/sap/Z74STUDENTGAMESSERVICE_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

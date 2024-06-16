@@ -1,0 +1,42 @@
+<mvc:View controllerName="hogent.controller.App"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page2" title="{i18n>title}">
+          <Table id="idStudents" inset="false" items="{/Z74StudentsSet}">
+      <headerToolbar>
+		<OverflowToolbar id="otbSubheader">	       
+            <Label id="itemTitle" text="Events" wrapping="true" design="Bold"/>
+        </OverflowToolbar>
+	</headerToolbar>
+                
+      
+      <columns>
+        <Column id="userid" width="25em">
+        <Text id="lblid" text="Id"/>
+        </Column>
+        <Column id="forname" width="25em">
+          <Text id="lblName" text="Forname"/>
+        </Column>
+        <Column id="lastname" minScreenWidth="Tablet" demandPopin="true" width="15em">
+          <Text id="lblLastname" text="Lastname"/>
+        </Column>
+
+        <Column id="create" minScreenWidth="Desktop" demandPopin="true" width="3em" hAlign="End">
+		<OverflowToolbarButton id="btnAdd" tooltip="Sort" type="Transparent" text="Add" icon="sap-icon://add" press="onAdd"/>
+        </Column>
+
+      </columns>
+      <items>
+        <ColumnListItem id="_IDGenColumnListItem1" vAlign="Middle" type="Navigation" press="handleEventItemPressed">
+          <cells>
+            <Text id="txtid" text="{Id}"/>
+            <Text id="txtName" text="{Firstname}"/>
+            <Text id="txtDate" text="{Lastname} "/>
+          </cells>
+        </ColumnListItem>
+      </items>
+    </Table>
+
+        <content />
+    </Page>
+</mvc:View>

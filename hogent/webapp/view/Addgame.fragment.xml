@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form">
+    <Dialog id="AddGame" title="Add new Game" beforeOpen="beforeGameAdd">
+        <f:SimpleForm id="frmstudent" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+            <f:content>
+            <ComboBox id="addgame" items="{/Z74GamesSet}">
+            <core:ListItem id="item" key="{Id}" text="{Name}" additionalText="{Publisher}" ></core:ListItem>
+            </ComboBox>
+            
+            </f:content>
+            <Button id="btnSave" type="Accept" text="Add" press="onGameAdder">
+            </Button>
+        </f:SimpleForm>
+    </Dialog>
+</core:FragmentDefinition>

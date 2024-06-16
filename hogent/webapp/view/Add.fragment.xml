@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form">
+    <Dialog id="registerDialog" title="Add new student" beforeOpen="beforeStudentAdd">
+        <f:SimpleForm id="frmstudent" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+            <f:content>
+                <Label id="_IDGenLabel1" text="Firstname" />
+                <Input id="firstnameinput" placeholder="Enter your firstname" value="{form>/Firstname}" required="true"/>
+                <Label id="_IDGenLabel2" text="Lastname" />
+                <Input id="lastnameinput" placeholder="Enter your lastname" value="{form>/Lastname}" required="true"/>
+            </f:content>
+            <Button id="btnSave" type="Accept" text="Add" press="onStudentAdd">
+            </Button>
+        </f:SimpleForm>
+    </Dialog>
+</core:FragmentDefinition>

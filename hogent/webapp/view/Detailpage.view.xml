@@ -1,0 +1,48 @@
+<mvc:View controllerName="hogent.controller.Detailpage"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page2" title="{Firstname} {Lastname}">
+
+			<FlexBox id="flxbx"
+				height="100px"
+				alignItems="Start"
+				justifyContent="Start">	
+        <VBox id="StudentInfo">
+			<Label id="lblforname" text="First name"></Label>
+            <Text id="forname" text="{Firstname}"></Text>
+            <Label id="lbllastname" text="Last name"></Label>
+            <Text id="lastname" text="{Lastname}"></Text>
+		</VBox>
+        </FlexBox>
+
+
+      <Table id="idGames" items="{/Z74FavoGamesSet}">
+      <columns>
+        <Column id="studid" width="25em">
+          <Text id="lblName" text="userId"/>
+        </Column>
+        <Column id="gameid" minScreenWidth="Tablet" demandPopin="true" width="15em">
+          <Text id="lblLastname" text="gameiD"/>
+        </Column>
+        <Column id="gameid1" minScreenWidth="Tablet" demandPopin="true" width="15em">
+          <Text id="lblLastname1" text="Game Name"/>
+        </Column>
+
+        <Column id="create" minScreenWidth="Desktop" demandPopin="true" width="3em" hAlign="End">
+		<OverflowToolbarButton id="btnAdd" tooltip="Sort" type="Transparent" text="Add" icon="sap-icon://add" press="onGameAdd"/>
+        </Column>
+
+      </columns>
+      <items>
+        <ColumnListItem id="_IDGenColumnListItem1" vAlign="Middle" type="Navigation" >
+          <cells>
+            <Text id="Studid" text="{Studentid}"/>
+            <Text id="txtpublisher" text="{Gameid}"/>
+            <Text id="txtpublisher1" text="{/Z74Games/Name}"/>
+          </cells>
+        </ColumnListItem>
+      </items>
+    </Table>
+    
+    </Page>
+</mvc:View>
